@@ -1,15 +1,22 @@
 package com.company;
 
-public class Person {
-    private static int counter = 0;
-    private int id;
+public class Person extends Record{
     private String name;
     private String surname;
     private String phone;
+    private String email;
 
-    public Person() {
-        Person.counter++;
-        this.id = counter;
+
+    public void askInfo(){
+        System.out.println("Name> ");
+        name = Main.scan.next();
+        System.out.println("surname> ");
+        surname = Main.scan.next();
+        System.out.println("Phone> ");
+        phone = Main.scan.next();
+        System.out.println("E-Mail >");
+        email = Main.scan.next();
+
     }
 
     public void setName(String name) {
@@ -24,10 +31,6 @@ public class Person {
         this.phone = phone;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -38,5 +41,23 @@ public class Person {
 
     public String getPhone() {
         return phone;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + getId() +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

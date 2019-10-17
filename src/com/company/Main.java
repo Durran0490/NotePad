@@ -5,8 +5,8 @@ import java.util.*;
 public class Main {
 
 
-    static Scanner scan = new Scanner(System.in);
-    static ArrayList<Person> personList = new ArrayList<>();
+    static final Scanner scan = new Scanner(System.in);
+    static ArrayList<Record> list = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("Welcome, Enter a command. Try 'help' for 'Help'");
@@ -28,21 +28,18 @@ public class Main {
                     createRecord();
                     break;
                 case "list":
-                    showPersonList();
+                    showList();
                     break;
                 default:
                     System.out.println("Invalid message!");
             }
-        } while (cmd != "exit");
+        } while (!cmd.equals("exit"));
     }
 
-    private static void showPersonList() {
-        for (Person list : personList) {
-            System.out.printf("%d %s %s %s\n",
-                    list.getId(),
-                    list.getName(),
-                    list.getSurname(),
-                    list.getPhone());
+
+    private static void showList() {
+        for (Record l : list) {
+            System.out.println(l);
         }
     }
 
@@ -53,25 +50,24 @@ public class Main {
             case "person":
                 createPerson();
                 break;
+            case "note":
+                createNote();
+                break;
             default:
                 System.out.println("Invalid message");
         }
     }
 
+    private static void createNote() {
+        Note p = new Note();
+        p.askInfo();
+        list.add(p);
+    }
+
     private static void createPerson() {
-        System.out.println("Name> ");
-        String name = scan.next();
-        System.out.println("surname> ");
-        String surname = scan.next();
-        System.out.println("Phone> ");
-        String phone = scan.next();
-
         Person p = new Person();
-        p.setName(name);
-        p.setSurname(surname);
-        p.setPhone(phone);
-
-        personList.add(p);
+        p.askInfo();
+        list.add(p);
 
     }
 
