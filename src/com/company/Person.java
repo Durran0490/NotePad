@@ -8,7 +8,7 @@ public class Person extends Record {
     private String phone;
     private String email;
 
-
+    @Override
     public void askInfo() {
         System.out.println("Name> ");
         name = Main.scan.next();
@@ -53,8 +53,13 @@ public class Person extends Record {
         return email;
     }
 
-    //private String nameSpaces = ""+addSpaces(name);
-    //private String surnameSpaces = ""+addSpaces(surname);
+
+    @Override
+    public boolean contains(String rec) {
+        System.out.print("Find in person> ");
+        return super.contains(rec);
+
+    }
 
     @Override
     public String toString() {
@@ -66,12 +71,5 @@ public class Person extends Record {
                 " email:'" + email + '\'';
     }
 
-    /*private StringBuffer addSpaces(String name) {
-        StringBuffer strBuff = new StringBuffer();
-        for (int i = 0; i < (6 - name.length()); i++) {
-            strBuff.insert(name.length()+i, " ");
-        }
-        return strBuff;
-    }
-    }*/
+
 }

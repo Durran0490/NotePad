@@ -11,8 +11,17 @@ public class Note extends Record {
         this.note = note;
     }
 
-    public void askInfo(){
-        System.out.println("Write your note> ");
+    @Override
+    public boolean contains(String rec) {
+        System.out.print("Find in note> ");
+        return super.contains(rec);
+
+        }
+
+
+    @Override
+    public void askInfo() {
+        System.out.print("Write your note> ");
         note = Main.scan.next();
     }
 

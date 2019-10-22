@@ -9,6 +9,7 @@ public class Main {
     static ArrayList<Record> list = new ArrayList<>();
 
     public static void main(String[] args) {
+        scan.useDelimiter("\n");
         System.out.println("Welcome, Enter a command. Try 'help' for 'Help'");
 
         Scanner scan = new Scanner(System.in);
@@ -30,12 +31,45 @@ public class Main {
                 case "list":
                     showList();
                     break;
+                case "find":
+                    find();
+                    break;
                 default:
                     System.out.println("Invalid message!");
             }
         } while (!cmd.equals("exit"));
     }
 
+    private static void find() {
+        System.out.print("find> ");
+        String str = scan.next();
+            contains(str);
+            }
+
+
+    private static void createRecord() {
+        System.out.print("create>");
+        String type = scan.next();
+        switch (type) {
+            case "person":
+                createRecord(new Person());
+                break;
+            case "note":
+                createRecord(new Note());
+                break;
+            case "alarm":
+                createRecord(new Alarm());
+                break;
+            default:
+                System.out.println("Invalid message");
+        }
+    }
+
+
+    private static void createRecord(Record r) {
+        r.askInfo();
+        list.add(r);
+    }
 
     private static void showList() {
         for (Record l : list) {
@@ -43,36 +77,8 @@ public class Main {
         }
     }
 
-    private static void createRecord() {
-        System.out.print("create>");
-        String type = scan.next();
-        switch (type) {
-            case "person":
-                createPerson();
-                break;
-            case "note":
-                createNote();
-                break;
-            default:
-                System.out.println("Invalid message");
-        }
-    }
-
-    private static void createNote() {
-        Note p = new Note();
-        p.askInfo();
-        list.add(p);
-    }
-
-    private static void createPerson() {
-        Person p = new Person();
-        p.askInfo();
-        list.add(p);
-
-    }
-
-    static void showHelp() {
+    private static void showHelp() {
         System.out.println("HELP! (Useful stuff will be added later eventually)");
     }
 
-    }
+}
