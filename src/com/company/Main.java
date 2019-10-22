@@ -75,9 +75,4 @@ public class Main {
         System.out.println("HELP! (Useful stuff will be added later eventually)");
     }
 
-    /*static void addSpaces(String name){
-        for (int i = 0; i < (10 -name.length()) ; i++) {
-            System.out.print(" ");
-        }
-    }*/
-}
+    }
