@@ -43,7 +43,11 @@ public class Main {
     private static void find() {
         System.out.print("find> ");
         String str = scan.next();
-            contains(str);
+        for(Record r :list) {
+            if(r.contains(str)){
+                System.out.printf("yep this contains %s \n ", str);
+            }
+        }
             }
 
 

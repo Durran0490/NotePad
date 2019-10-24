@@ -17,7 +17,7 @@ public abstract class Record {
 
     public  boolean contains(String rec){
         return Integer.toString(id).contains(rec);
-    };
+    }
 
 }
 

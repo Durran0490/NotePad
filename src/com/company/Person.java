@@ -57,7 +57,11 @@ public class Person extends Record {
     @Override
     public boolean contains(String rec) {
         System.out.print("Find in person> ");
-        return super.contains(rec);
+        return super.contains(rec)
+                || name.contains(rec)
+                || surname.contains(rec)
+                || phone.contains(rec)
+                || email.contains(rec);
 
     }
 

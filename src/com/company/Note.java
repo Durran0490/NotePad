@@ -14,7 +14,8 @@ public class Note extends Record {
     @Override
     public boolean contains(String rec) {
         System.out.print("Find in note> ");
-        return super.contains(rec);
+        return super.contains(rec)
+                || note.contains(rec);
 
         }
 
