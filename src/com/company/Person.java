@@ -69,8 +69,8 @@ public class Person extends Record {
     public String toString() {
         return "Person> " +
                 "id: " + getId() +
-                " name:'" + name +/*nameSpaces+*/ '\'' +
-                " surname:'" + surname +/*surnameSpaces+*/ '\'' +
+                " name:'" + name +'\'' +
+                " surname:'" + surname + '\'' +
                 " phone:'" + phone + '\'' +
                 " email:'" + email + '\'';
     }

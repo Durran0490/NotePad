@@ -28,9 +28,9 @@ public class Note extends Record {
 
     @Override
     public String toString() {
-        return "Note{" +
-                "id=" + getId() +
-                "note='" + note + '\'' +
+        return "Note>" +
+                "id: " + getId() +
+                " note='" + note + '\'' +
                 '}';
     }
 }

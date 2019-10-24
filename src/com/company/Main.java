@@ -34,21 +34,38 @@ public class Main {
                 case "find":
                     find();
                     break;
+                case "delete":
+                    deleteId();
+                    break;
                 default:
                     System.out.println("Invalid message!");
             }
         } while (!cmd.equals("exit"));
     }
 
+    private static void deleteId() {
+        System.out.print("delete ID> ");
+        int num = scan.nextInt();
+        for (int i = 0; i < list.size(); i++) {
+            Record r = list.get(i);
+            if( num == r.getId())
+            {
+                System.out.printf("You removed record: %s with ID: %d\n", i, num);
+                list.remove(i);
+                break;
+            }
+        }
+    }
+
     private static void find() {
         System.out.print("find> ");
         String str = scan.next();
-        for(Record r :list) {
-            if(r.contains(str)){
+        for (Record r : list) {
+            if (r.contains(str)) {
                 System.out.printf("yep this contains %s \n ", str);
             }
         }
-            }
+    }
 
 
     private static void createRecord() {
@@ -64,11 +81,13 @@ public class Main {
             case "alarm":
                 createRecord(new Alarm());
                 break;
+            case "reminder":
+                createRecord(new Reminder());
+                break;
             default:
                 System.out.println("Invalid message");
         }
     }
-
 
     private static void createRecord(Record r) {
         r.askInfo();
