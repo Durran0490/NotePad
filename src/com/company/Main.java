@@ -52,7 +52,7 @@ public class Main {
         for (int i = 0; i < list.size(); i++) {
             Record r = list.get(i);
             if (r.contains(rec)) {
-                System.out.printf("You removed record: %s with word: %s\n", i, rec);
+                System.out.printf("You removed record: %s with word: %s\n", r.getId(), rec);
                 list.remove(i);
             }
         }
