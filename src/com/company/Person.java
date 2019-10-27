@@ -1,12 +1,12 @@
 package com.company;
 
-import java.lang.StringBuffer;
 
 public class Person extends Record {
     private String name;
     private String surname;
     private String phone;
     private String email;
+
 
     @Override
     public void askInfo() {
@@ -56,7 +56,6 @@ public class Person extends Record {
 
     @Override
     public boolean contains(String rec) {
-        System.out.print("Find in person> ");
         return super.contains(rec)
                 || name.contains(rec)
                 || surname.contains(rec)
@@ -69,7 +68,7 @@ public class Person extends Record {
     public String toString() {
         return "Person> " +
                 "id: " + getId() +
-                " name:'" + name +'\'' +
+                " name:'" + name + '\'' +
                 " surname:'" + surname + '\'' +
                 " phone:'" + phone + '\'' +
                 " email:'" + email + '\'';

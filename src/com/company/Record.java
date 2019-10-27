@@ -13,6 +13,7 @@ public abstract class Record {
         return id;
     }
 
+
     public abstract void askInfo();
 
     public  boolean contains(String rec){

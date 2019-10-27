@@ -37,10 +37,25 @@ public class Main {
                 case "delete":
                     deleteId();
                     break;
+                case "clean":
+                    findAndClean();
+                    break;
                 default:
                     System.out.println("Invalid message!");
             }
         } while (!cmd.equals("exit"));
+    }
+
+    private static void findAndClean() {
+        System.out.print("delete by name> ");
+        String rec = scan.next();
+        for (int i = 0; i < list.size(); i++) {
+            Record r = list.get(i);
+            if (r.contains(rec)) {
+                System.out.printf("You removed record: %s with word: %s\n", i, rec);
+                list.remove(i);
+            }
+        }
     }
 
     private static void deleteId() {
@@ -48,8 +63,7 @@ public class Main {
         int num = scan.nextInt();
         for (int i = 0; i < list.size(); i++) {
             Record r = list.get(i);
-            if( num == r.getId())
-            {
+            if (num == r.getId()) {
                 System.out.printf("You removed record: %s with ID: %d\n", i, num);
                 list.remove(i);
                 break;

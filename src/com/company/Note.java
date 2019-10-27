@@ -3,6 +3,7 @@ package com.company;
 public class Note extends Record {
     private String note;
 
+
     public String getNote() {
         return note;
     }
@@ -11,9 +12,9 @@ public class Note extends Record {
         this.note = note;
     }
 
+
     @Override
     public boolean contains(String rec) {
-        System.out.print("Find in note> ");
         return super.contains(rec)
                 || note.contains(rec);
 
