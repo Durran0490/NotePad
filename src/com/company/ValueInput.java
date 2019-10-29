@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-public class ValueInput {
+public  class ValueInput {
 
     public LocalTime parseTime() {
         while (true) {
