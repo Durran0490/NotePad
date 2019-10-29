@@ -5,11 +5,9 @@ import java.util.*;
 public class Main {
 
 
-    static final Scanner scan = new Scanner(System.in);
     static ArrayList<Record> list = new ArrayList<>();
 
     public static void main(String[] args) {
-        scan.useDelimiter("\n");
         System.out.println("Welcome, Enter a command. Try 'help' for 'Help'");
 
         Scanner scan = new Scanner(System.in);
@@ -37,30 +35,62 @@ public class Main {
                 case "delete":
                     deleteId();
                     break;
-                case "clean":
-                    findAndClean();
+                case "expired":
+                    listExpired();
                     break;
+                case "dismiss":
+                    dismissTime();
+                    break;
+                //case "clean":
+                //    findAndClean();
+                //    break;
                 default:
                     System.out.println("Invalid message!");
             }
         } while (!cmd.equals("exit"));
     }
 
-    private static void findAndClean() {
-        System.out.print("delete by name> ");
-        String rec = scan.next();
+   /* private static void findAndClean() {
+        String rec = ValueInput.askString("delete by name");
+        Iterator i = list.iterator();
+        while (i.hasNext())
+            if (i.next().contains(rec)) {
+                //System.out.printf("You removed record: %s with word: %s\n", i.getId(), rec);
+                i.remove();
+            }
+        //for (int i = 0; i < list.size(); i++) {
+        //    Record r = list.get(i);
+        //}
+    }
+    */
+
+    private static void dismissTime() {
+        int num = ValueInput.askInt("dismiss ID");
         for (int i = 0; i < list.size(); i++) {
             Record r = list.get(i);
-            if (r.contains(rec)) {
-                System.out.printf("You removed record: %s with word: %s\n", r.getId(), rec);
-                list.remove(i);
+            if (r instanceof Expirable && num == r.getId()) {
+                Expirable e = (Expirable) r;
+                System.out.printf("You dismissed record: %s with ID: %d\n", i, num);
+                e.dismissRemind();
+            } else {
+                System.out.printf("Record: %s with ID: %d can't be dismissed\n", i, num);
+            }
+        }
+    }
+
+    private static void listExpired() {
+        for (Record r : list) {
+            if (r instanceof Expirable) {
+                Expirable e = (Expirable) r;
+                if (e.isExpired()) {
+                    System.out.println(r);
+                }
             }
         }
     }
 
     private static void deleteId() {
-        System.out.print("delete ID> ");
-        int num = scan.nextInt();
+        int num = ValueInput.askInt("delete ID");
         for (int i = 0; i < list.size(); i++) {
             Record r = list.get(i);
             if (num == r.getId()) {
@@ -72,8 +102,7 @@ public class Main {
     }
 
     private static void find() {
-        System.out.print("find> ");
-        String str = scan.next();
+        String str = ValueInput.askString("find");
         for (Record r : list) {
             if (r.contains(str)) {
                 System.out.printf("yep this contains %s \n ", str);
@@ -81,10 +110,8 @@ public class Main {
         }
     }
 
-
     private static void createRecord() {
-        System.out.print("create>");
-        String type = scan.next();
+        String type = ValueInput.askString("create");
         switch (type) {
             case "person":
                 createRecord(new Person());

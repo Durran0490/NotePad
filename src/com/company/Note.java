@@ -23,8 +23,7 @@ public class Note extends Record {
 
     @Override
     public void askInfo() {
-        System.out.print("Write your note> ");
-        note = Main.scan.next();
+        note = ValueInput.askString("Write your note");
     }
 
     @Override

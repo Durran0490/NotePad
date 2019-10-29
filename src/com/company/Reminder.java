@@ -1,11 +1,11 @@
 package com.company;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
-public class Reminder extends Alarm {
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("uuuu.M.dd");
+public class Reminder extends Alarm implements Expirable {
     private LocalDate date;
+    boolean dismiss = false;
 
     public LocalDate getDate() {
         return date;
@@ -14,6 +14,7 @@ public class Reminder extends Alarm {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
 
     @Override
     public void askInfo() {
@@ -24,16 +25,30 @@ public class Reminder extends Alarm {
 
     @Override
     public boolean contains(String rec) {
-        return super.contains(rec) || date.format(DATE_FORMAT).contains(rec);
+        return super.contains(rec) || date.format(ValueInput.DATE_FORMAT).contains(rec);
     }
 
     @Override
     public String toString() {
         return "Reminder> " +
                 "id: " + getId() +
-                " Date: " + date.format(DATE_FORMAT) + '\'' +
-                " Time: " + getTime().format(TIME_FORMAT) + '\'' +
+                " Date: " + date.format(ValueInput.DATE_FORMAT) + '\'' +
+                " Time: " + getTime().format(ValueInput.TIME_FORMAT) + '\'' +
                 "note='" + getNote() + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean isExpired() {
+        var dt = LocalDateTime.of(date, getTime());
+        if (dismiss){
+            return false;
+        }
+        return LocalDateTime.now().isAfter(dt);
+    }
+
+    @Override
+    public void dismissRemind() {
+        dismiss = true;
     }
 }

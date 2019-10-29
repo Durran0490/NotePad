@@ -1,11 +1,11 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
-public class Alarm extends Note {
-    public static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH.mm");
+public class Alarm extends Note implements Expirable{
     private LocalTime time;
+    private LocalDate dismissedAt;
 
     public LocalTime getTime() {
         return time;
@@ -19,7 +19,7 @@ public class Alarm extends Note {
 
     @Override
     public boolean contains(String rec) {
-        return super.contains(rec) || time.format(TIME_FORMAT).contains(rec);
+        return super.contains(rec) || time.format(ValueInput.TIME_FORMAT).contains(rec);
     }
 
     @Override
@@ -38,8 +38,21 @@ public class Alarm extends Note {
     public String toString() {
         return "Alarm{" +
                 "id: " + getId() +
-                " time='" + time.format(TIME_FORMAT) + '\'' +
+                " time='" + time.format(ValueInput.TIME_FORMAT) + '\'' +
                 "note='" + getNote() + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean isExpired() {
+        if ( LocalDate.now().equals(dismissedAt)) {
+            return false;
+        }
+        return LocalTime.now().isAfter(time);
+    }
+
+    @Override
+    public void  dismissRemind() {
+        dismissedAt = LocalDate.now();
     }
 }

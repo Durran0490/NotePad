@@ -10,15 +10,10 @@ public class Person extends Record {
 
     @Override
     public void askInfo() {
-        System.out.println("Name> ");
-        name = Main.scan.next();
-        System.out.println("surname> ");
-        surname = Main.scan.next();
-        System.out.println("Phone> ");
-        phone = Main.scan.next();
-        System.out.println("E-Mail >");
-        email = Main.scan.next();
-
+        name = ValueInput.askString("Name");
+        surname = ValueInput.askString("surname");
+        phone = ValueInput.askString("Phone");
+        email = ValueInput.askString("E-Mail");
     }
 
     public void setName(String name) {
