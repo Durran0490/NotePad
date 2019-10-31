@@ -41,28 +41,28 @@ public class Main {
                 case "dismiss":
                     dismissTime();
                     break;
-                //case "clean":
-                //    findAndClean();
-                //    break;
+                case "clean":
+                    findAndClean();
+                    break;
                 default:
                     System.out.println("Invalid message!");
             }
         } while (!cmd.equals("exit"));
     }
 
-   /* private static void findAndClean() {
+    private static void findAndClean() {
         String rec = ValueInput.askString("delete by name");
-        Iterator i = list.iterator();
-        while (i.hasNext())
-            if (i.next().contains(rec)) {
-                //System.out.printf("You removed record: %s with word: %s\n", i.getId(), rec);
+        // list.removeIf(r-> r.contains(rec));
+        Iterator<Record> i = list.iterator();
+        while (i.hasNext()) {
+            Record r = i.next();
+            if (r.contains(rec)) {
+                System.out.printf("You removed record: %s with word: %s\n", r.getId(), rec);
                 i.remove();
             }
-        //for (int i = 0; i < list.size(); i++) {
-        //    Record r = list.get(i);
-        //}
+        }
     }
-    */
+
 
     private static void dismissTime() {
         int num = ValueInput.askInt("dismiss ID");

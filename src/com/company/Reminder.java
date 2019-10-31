@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Reminder extends Alarm implements Expirable {
     private LocalDate date;
-    boolean dismiss = false;
+    private boolean dismiss = false;
 
     public LocalDate getDate() {
         return date;
@@ -35,6 +35,7 @@ public class Reminder extends Alarm implements Expirable {
                 " Date: " + date.format(ValueInput.DATE_FORMAT) + '\'' +
                 " Time: " + getTime().format(ValueInput.TIME_FORMAT) + '\'' +
                 "note='" + getNote() + '\'' +
+                "Dismissed at: "+
                 '}';
     }
 
